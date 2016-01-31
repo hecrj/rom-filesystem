@@ -14,7 +14,7 @@ rvm:
   - ruby-head
 env:
   global:
-    - CODECLIMATE_REPO_TOKEN=
+    - CODECLIMATE_REPO_TOKEN=4bc2ab1a7aa4cefb2d9794f3f13941a479c42884d0afea032a841ed0fbebfb44
     - JRUBY_OPTS='--dev -J-Xmx1024M'
 matrix:
   allow_failures:
