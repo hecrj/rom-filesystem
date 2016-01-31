@@ -8,7 +8,7 @@ module ROM
       end
 
       def select(*args)
-        self.class.new(@dir, args)
+        self.class.new(@dir, args, @sort)
       end
 
       def sort
