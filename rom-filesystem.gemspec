@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Héctor Ramón']
   spec.email         = ['hector0193@gmail.com']
 
-  spec.summary       = 'File adapter for ROM'
+  spec.summary       = 'Filesystem adapter for ROM'
   spec.description   = spec.summary
   spec.homepage      = 'http://rom-rb.org'
   spec.license       = 'MIT'
