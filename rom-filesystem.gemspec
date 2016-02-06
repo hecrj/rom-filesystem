@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Filesystem adapter for ROM'
   spec.description   = spec.summary
-  spec.homepage      = 'http://rom-rb.org'
+  spec.homepage      = 'https://github.com/hecrj/rom-filesystem'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
