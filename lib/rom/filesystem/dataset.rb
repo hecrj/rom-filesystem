@@ -1,18 +1,19 @@
 module ROM
   module Filesystem
     class Dataset
-      def initialize(dir, select = ['*'], sort = false)
+      def initialize(dir, options = {})
         @dir = dir
-        @select = select
-        @sort = sort
+        @options = options
+
+        @options[:select] ||= ['*']
       end
 
       def select(*args)
-        self.class.new(@dir, args, @sort)
+        self.class.new(@dir, @options.merge(select: args))
       end
 
       def sort
-        self.class.new(@dir, @select, true)
+        self.class.new(@dir, @options.merge(sort: true))
       end
 
       def each(&block)
@@ -21,12 +22,19 @@ module ROM
 
       def to_a
         root = Pathname.new(@dir.path)
-        paths = @select.map { |filter| "#{root}/#{filter}" }
+        paths = @options[:select].map { |filter| "#{root}/#{filter}" }
 
         matches = Dir[*paths].reject { |f| f == '.' || f == '..' }
-        matches = matches.sort if @sort
+        matches = matches.sort if @options[:sort]
 
-        matches.map { |filename| root.join(filename) }
+        matches.map do |filename|
+          path = root.join(filename)
+
+          {
+            name: path.basename.to_s,
+            path: path
+          }
+        end
       end
     end
   end
