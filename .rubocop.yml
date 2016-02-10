@@ -18,7 +18,7 @@ Lint/HandleExceptions:
 # gemspec is a special snowflake
 Metrics/LineLength:
   Exclude:
-    - rom.gemspec
+    - rom-filesystem.gemspec
 
 # The enforced style doesn’t match Vim’s defaults
 Style/AlignParameters:
@@ -47,11 +47,6 @@ Style/Lambda:
 # Multiline block chains are ok
 Style/MultilineBlockChain:
   Enabled: false
-
-# Result::Success and Result::Failure use > for callbacks
-Style/OpMethod:
-  Exclude:
-    - lib/rom/command_registry.rb
 
 # Don’t introduce semantic fail/raise distinction
 Style/SignalException:
