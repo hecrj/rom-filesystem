@@ -6,11 +6,18 @@ describe 'Reading relations' do
   before :each do
     configuration.relation(:media) do
       register_as :media
+      dataset { sort }
+
+      def text_files
+        select('*.txt')
+      end
     end
   end
 
+  let(:media) { container.relation(:media) }
+
   it 'lists file paths' do
-    paths = container.relation(:media).sort.to_a.map { |file| file[:path] }
+    paths = media.to_a.map { |file| file[:path] }
 
     expect(paths).to eql([
                            Pathname.new(TMP_TEST_DIR).join('media/some_file.txt'),
@@ -20,14 +27,14 @@ describe 'Reading relations' do
   end
 
   it 'lists file names' do
-    names = container.relation(:media).sort.to_a.map { |file| file[:name] }
+    names = media.to_a.map { |file| file[:name] }
 
     expect(names).to eql(%w(some_file.txt some_image.png some_markdown.md))
   end
 
   it 'selects files' do
-    files = container.relation(:media).select('*.txt', '*.png').sort.to_a.map { |file| file[:name] }
+    files = media.text_files.to_a.map { |file| file[:name] }
 
-    expect(files).to eql(%w(some_file.txt some_image.png))
+    expect(files).to eql(%w(some_file.txt))
   end
 end
